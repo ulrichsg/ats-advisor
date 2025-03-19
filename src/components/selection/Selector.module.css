@@ -1,0 +1,11 @@
+.Selector {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 10px;
+  font-size: large;
+}
+
+.Needs {
+  list-style: none;
+}
