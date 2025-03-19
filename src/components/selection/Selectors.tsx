@@ -1,13 +1,15 @@
 import { Component } from 'solid-js';
-import Selector from './Selector';
+import LevelSelector from './LevelSelector';
+import SpeciesSelector from './SpeciesSelector';
 import styles from './Selectors.module.css';
 
 const Selectors: Component = () => {
   return (
     <div class={styles.Selectors}>
-      <Selector index={0}/>
-      <Selector index={1}/>
-      <Selector index={2}/>
+      <SpeciesSelector index={0}/>
+      <SpeciesSelector index={1}/>
+      <SpeciesSelector index={2}/>
+      <LevelSelector/>
     </div>
   );
 };

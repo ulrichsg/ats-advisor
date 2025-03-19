@@ -39,6 +39,11 @@ const Buildings: Component = () => {
         continue;
       }
 
+      const levelReq = requirements.minimum_levels[building] ?? null;
+      if (levelReq && levelReq > state.level) {
+        continue;
+      }
+
       let totalScore = 0;
       let goods = [];
       for (const good in production.buildings[building]) {

@@ -3,7 +3,7 @@ import * as species from '../../data/species';
 import { AppContext, State } from '../../state';
 import style from './Selector.module.css';
 
-const Selector: Component<{ index: number }> = (props) => {
+const SpeciesSelector: Component<{ index: number }> = (props) => {
   const { state, setState } = useContext<State>(AppContext);
 
   const handleChange = (e) => {
@@ -38,12 +38,11 @@ const Selector: Component<{ index: number }> = (props) => {
   };
 
   return (
-    <div class={style.Selector}>
-      <select onChange={handleChange}>
-        <option key='null' value=''>Select Species</option>
+    <div class={style.SpeciesSelector}>
+      <select size={1} onChange={handleChange}>
+        <option value=''>Select Species</option>
         {species.names.map(species => (
           <option
-            key={species}
             value={species}
             selected={species === selected()}
             disabled={otherSelections().includes(species)}
@@ -65,4 +64,4 @@ const Selector: Component<{ index: number }> = (props) => {
   );
 };
 
-export default Selector;
+export default SpeciesSelector;
