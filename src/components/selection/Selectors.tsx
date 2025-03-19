@@ -1,7 +1,8 @@
+import { Component } from 'solid-js';
 import Selector from './Selector';
 import styles from './Selectors.module.css';
 
-export default function Selectors() {
+const Selectors: Component = () => {
   return (
     <div class={styles.Selectors}>
       <Selector index={0}/>
@@ -10,3 +11,5 @@ export default function Selectors() {
     </div>
   );
 };
+
+export default Selectors;

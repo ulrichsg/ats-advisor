@@ -1,0 +1,23 @@
+.Building {
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  padding: 10px;
+  width: 15%;
+}
+
+.Heading {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.ProductionNeed0 {
+  font-style: italic;
+}
+
+.ProductionNeed1 {
+}
+
+.ProductionNeed2 {
+  font-weight: bold;
+}

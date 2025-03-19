@@ -1,14 +1,10 @@
-import { For, useContext } from 'solid-js';
+import { Component, For, useContext } from 'solid-js';
 import * as species from '../../data/species';
-import { AppContext } from '../../state';
+import { AppContext, State } from '../../state';
 import style from './Selector.module.css';
 
-type Props = {
-  index: number;
-}
-
-export default function Selector(props: Props) {
-  const { state, setState } = useContext(AppContext);
+const Selector: Component<{ index: number }> = (props) => {
+  const { state, setState } = useContext<State>(AppContext);
 
   const handleChange = (e) => {
     const value = e.target.value || null;
@@ -68,3 +64,5 @@ export default function Selector(props: Props) {
     </div>
   );
 };
+
+export default Selector;
