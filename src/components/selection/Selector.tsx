@@ -19,7 +19,20 @@ export default function Selector(props: Props) {
   };
 
   const selected = () => state.selection[props.index];
-  const needs = () => selected() === null ? [] : species.needs[selected()];
+  const needs = () => {
+    const selection = selected();
+    if (selection === null) {
+      return [];
+    }
+    const needs = species.needs[selection];
+
+    const otherNeeds = []
+      .concat(props.index !== 0 ? species.needs[state.selection[0]] : [])
+      .concat(props.index !== 1 ? species.needs[state.selection[1]] : [])
+      .concat(props.index !== 2 ? species.needs[state.selection[2]] : []);
+
+    return needs.map(n => otherNeeds.includes(n) ? `!${n}` : n);
+  };
 
   return (
     <div class={style.Selector}>
@@ -33,7 +46,11 @@ export default function Selector(props: Props) {
       </select>
       <ul class={style.Needs}>
         <For each={needs()}>
-          {(item, index) => (<li key={index}>{item}</li>)}
+          {(item, index) => (
+            <li key={index}>
+              {item[0] === '!' ? <b>{item.substring(1)}</b> : item}
+            </li>
+          )}
         </For>
       </ul>
     </div>
