@@ -1,0 +1,4 @@
+.Buildings {
+  display: flex;
+  flex-direction: row;
+}
