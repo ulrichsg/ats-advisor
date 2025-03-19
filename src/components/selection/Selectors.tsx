@@ -1,13 +1,7 @@
-import { Selection } from '../../state';
 import Selector from './Selector';
 import styles from './Selectors.module.css';
 
-type Props = {
-  selected: Selection;
-  onChange: (selection: Selection) => void;
-}
-
-export default function Selectors(props: Props) {
+export default function Selectors() {
   return (
     <div class={styles.Selectors}>
       <Selector index={0}/>
