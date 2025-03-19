@@ -11,6 +11,11 @@
   font-weight: bold;
 }
 
+.Production {
+  list-style: none;
+  padding-left: 0;
+}
+
 .ProductionNeed0 {
   font-style: italic;
 }
