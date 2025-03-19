@@ -19,6 +19,13 @@ export default function Selector(props: Props) {
   };
 
   const selected = () => state.selection[props.index];
+
+  const otherSelections = () => {
+    const selection = selected();
+    return [state.selection[0], state.selection[1], state.selection[2]]
+      .filter(species => species !== selection);
+  };
+
   const needs = () => {
     const selection = selected();
     if (selection === null) {
@@ -39,7 +46,12 @@ export default function Selector(props: Props) {
       <select onChange={handleChange}>
         <option key='null' value=''>Select Species</option>
         {species.names.map(species => (
-          <option key={species} value={species} selected={species === selected()}>
+          <option
+            key={species}
+            value={species}
+            selected={species === selected()}
+            disabled={otherSelections().includes(species)}
+          >
             {species}
           </option>
         ))}
