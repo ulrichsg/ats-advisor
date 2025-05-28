@@ -3,7 +3,7 @@ import { AppContext, State } from '../../state';
 import styles from './Selector.module.css';
 
 const LevelSelector: Component = () => {
-  const { state, setState } = useContext<State>(AppContext);
+  const { state, setState } = useContext(AppContext);
 
   const handleChange = (e) => {
     setState('level', e.target.value);

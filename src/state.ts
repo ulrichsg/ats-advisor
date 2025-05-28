@@ -1,4 +1,4 @@
-import { createContext } from 'solid-js';
+import { createContext, useContext } from 'solid-js';
 
 export type Selection = {
   0: string|null;
@@ -20,4 +20,4 @@ export const initialState: State = {
   },
 };
 
-export const AppContext = createContext<State>();
+export const AppContext = createContext<State>(initialState);

@@ -1,12 +1,13 @@
-import { Component, For, useContext } from 'solid-js';
-import * as species from '../../data/species';
+import { Component, For, JSX, useContext } from 'solid-js';
+import { Good } from '../../data/goods';
+import { speciesNames, speciesNeeds } from '../../data/species';
 import { AppContext, State } from '../../state';
 import style from './Selector.module.css';
 
 const SpeciesSelector: Component<{ index: number }> = (props) => {
   const { state, setState } = useContext<State>(AppContext);
 
-  const handleChange = (e) => {
+  const handleChange: JSX.ChangeEventHandler<HTMLSelectElement, Event> = (e) => {
     const value = e.target.value || null;
     setState('selection', {
       ...state.selection,
@@ -27,12 +28,12 @@ const SpeciesSelector: Component<{ index: number }> = (props) => {
     if (selection === null) {
       return [];
     }
-    const needs = species.needs[selection];
+    const needs = speciesNeeds.get(selection) ?? [];
 
-    const otherNeeds = []
-      .concat(props.index !== 0 ? species.needs[state.selection[0]] : [])
-      .concat(props.index !== 1 ? species.needs[state.selection[1]] : [])
-      .concat(props.index !== 2 ? species.needs[state.selection[2]] : []);
+    const otherNeeds = ([] as Good[])
+      .concat(props.index !== 0 ? (speciesNeeds.get(state.selection[0]) ?? []) : [])
+      .concat(props.index !== 1 ? (speciesNeeds.get(state.selection[1]) ?? []) : [])
+      .concat(props.index !== 2 ? (speciesNeeds.get(state.selection[2]) ?? []) : []);
 
     return needs.map(n => otherNeeds.includes(n) ? `!${n}` : n);
   };
@@ -41,7 +42,7 @@ const SpeciesSelector: Component<{ index: number }> = (props) => {
     <div class={style.SpeciesSelector}>
       <select size={1} onChange={handleChange}>
         <option value=''>Select Species</option>
-        {species.names.map(species => (
+        {speciesNames.map(species => (
           <option
             value={species}
             selected={species === selected()}
